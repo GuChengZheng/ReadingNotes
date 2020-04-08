@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>计算</title>
+</head>
+<body>
+<script type="text/javascript">
+    console.log("from小弟的支持~");
+    function multiCodeCal() {
+        var code = document.getElementById("code").value;
+        if(null == code){
+            return;
+        }
+        var arr = code.split(",");
+        var result = "";
+        for(var i = 0; i < arr.length; i++){
+            result = result + arr[i] + "=" + codeCal(arr[i]) + "\n";
+        }
+        document.getElementById("codeResult").innerHTML=result;
+    }
+    function codeCal(code) {
+        if(null == code || code == ""){
+            return;
+        }
+        var baseUnit = 90;
+        var arr = code.split("");
+        var size = arr.length;
+        var sumArr = new Array();
+        for(var i = 0; i < size; i++){
+            if (i % 2 == 0) {
+                sumArr.push(arr[i]);
+                if(i > 4){
+                    baseUnit *= 10;
+                }
+            }
+        }
+        return parseInt(sumArr.join("")) - baseUnit;
+    }
+</script>
+<div>
+    <textarea id="code" type="text" name="code" rows="6" cols="40"></textarea>
+    <br/>
+    <input  value="计算" type="Submit" onclick="multiCodeCal()"/>
+    <p>使用说明：可以计算多个数字，数字之间用,隔开（输入法为英文的逗号哟）</p>
+    <textarea id="codeResult" rows="20" cols="40"></textarea>
+</div>
+</body>
+</html>
